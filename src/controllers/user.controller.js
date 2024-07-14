@@ -164,7 +164,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 const refereshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
     req.cookies.refereshToken || req.body.refereshToken;
-  if (incomingRefreshToken) {
+  if (!incomingRefreshToken) {
     throw new ApiError(401, "unauthorized request");
   }
 try {
@@ -193,7 +193,7 @@ try {
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", newrefreshToken, options)
       .json(
-        new ApiResponse(200,{accessToken,refereshToken},"new referesh token created")
+        new ApiResponse(200,{accessToken,newrefreshToken},"new referesh token created")
       )
 } catch (error) {
   throw new ApiError(401,error?.message||"Invalid decoding")
