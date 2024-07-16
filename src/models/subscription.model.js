@@ -19,4 +19,4 @@ const subscriptionSchema=new Schema({
 
 
 
-export const Subcription=mongoose.model("Subscription",subscriptionSchema)
+export const Subcriptions=mongoose.model("Subscriptions",subscriptionSchema)
